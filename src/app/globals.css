@@ -1,2 +1,11 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@theme{
+    --font-oswald: var(--font-oswald), sans-serif;
+    --color-my-brand: #C2F800;
+}
+
+body{
+    font-family: "Inter", sans-serif;
+}
