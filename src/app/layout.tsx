@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" data-theme="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} h-full antialiased min-h-full flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} ${inter.className} h-full antialiased min-h-full flex flex-col`}
       >
         <Navbar />
         {children}

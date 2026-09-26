@@ -15,7 +15,7 @@ const Navbar = () => {
           className={
             pathname === "/"
               ? "text-my-brand rounded-4xl p-4 badge"
-              : "text-[#9CA3AF] p-4"
+              : "text-gray-400 p-4"
           }
           href="/"
         >
@@ -27,7 +27,7 @@ const Navbar = () => {
           className={
             pathname === "/myPlan"
               ? "text-my-brand rounded-4xl p-4 badge"
-              : "text-[#9CA3AF] p-4"
+              : "text-gray-400 p-4"
           }
           href="/myPlan"
         >
@@ -38,14 +38,14 @@ const Navbar = () => {
   );
 
   return (
-    <div>
-      <div className="navbar bg-[#0f0b0b] border-b border-[#44484f] ">
-        <nav className="container mx-auto flex justify-between items-center p-4">
+    <div className="sticky top-0 z-50 text-gray-400">
+      <div className="navbar bg-[#0f0b0b] border-b border-[#44484f]">
+        <nav className="container mx-auto flex justify-between items-center p-3">
           <div className="md:hidden dropdown">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle text-[#9CA3AF]"
+              className="btn btn-ghost btn-circle text-gray-400"
             >
               <svg
                 aria-label="Menu"
@@ -90,7 +90,7 @@ const Navbar = () => {
                 0
               </span>
             </button>
-            <button className="p-1 text-[#9CA3AF] font-medium">
+            <button className="p-1 text-gray-400 font-medium">
               Saved{" "}
               <span className="bg-black border-[#D1D5DB] text-[#D1D5DB] font-bold max-sm:text-sm text-lg btn btn-ghost btn-circle max-sm:w-6 max-sm:h-6 w-8 h-8 ml-2">
                 0

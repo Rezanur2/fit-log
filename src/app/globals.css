@@ -3,9 +3,13 @@
 
 @theme{
     --font-oswald: var(--font-oswald), sans-serif;
-    --color-my-brand: #C2F800;
+    --color-my-brand: #ccff00;
 }
 
 body{
     font-family: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
