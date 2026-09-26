@@ -1,5 +1,6 @@
 import { IWorkout } from "@/types/workout.type";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FaFire } from "react-icons/fa";
 import { FiClock, FiStar } from "react-icons/fi";
@@ -11,7 +12,8 @@ interface IWorkoutProps {
 const WorkoutCard = ({ workout }: IWorkoutProps) => {
   return (
     <div>
-      <div className="card w-full max-w-sm overflow-hidden border border-base-300 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+          <Link href={`/workouts/${workout.id}`}>
+          <div className="card w-full max-w-sm overflow-hidden border border-base-300 bg-base-100 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
         <figure className="relative h-52 overflow-hidden">
           <Image
             src={workout.image}
@@ -34,7 +36,7 @@ const WorkoutCard = ({ workout }: IWorkoutProps) => {
               </span>
             ))}
           </div>
-          <h2 className="line-clamp-1 max-sm:text-base text-xl font-extrabold uppercase tracking-wide">
+          <h2 className="font-oswald line-clamp-1 max-sm:text-base text-xl font-extrabold uppercase tracking-wide">
             {workout.name}
           </h2>
           <p className="mt-1 max-sm:text-xs text-sm text-base-content/50">
@@ -57,6 +59,7 @@ const WorkoutCard = ({ workout }: IWorkoutProps) => {
           </div>
         </div>
       </div>
+          </Link>
     </div>
   );
 };
