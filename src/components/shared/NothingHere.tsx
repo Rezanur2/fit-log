@@ -3,13 +3,13 @@ import React from "react";
 
 const NothingHere = () => {
   return (
-    <div className="min-h-70 flex flex-col items-center justify-center space-y-6">
-      <h2 className="font-oswald font-bold text-xl">NOTHING HERE YET</h2>
-      <p className="text-xs text-[#A1A1AA]">
+    <div className="min-h-70 w-full flex flex-col items-center justify-center  px-8 bg-[#070808] border border-[#222630] rounded-2xl">
+      <h2 className="font-oswald font-bold text-xl mb-2">NOTHING HERE YET</h2>
+      <p className="text-xs text-[#A1A1AA] mb-8">
         Browse the library and add a lift to get today moving.
       </p>
       <Link href="/">
-        <span className="btn text-xs font-bold bg-my-brand text-black flex items-center justify-center gap-2 w-fit px-4 group">
+        <span className="btn text-xs font-bold bg-my-brand text-black flex items-center justify-center gap-2 w-fit py-5 px-6 group rounded-3xl">
           Go to workouts
         </span>
       </Link>
