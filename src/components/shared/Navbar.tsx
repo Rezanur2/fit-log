@@ -1,12 +1,18 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import logo from "@/assets/logo.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { WorkoutContext } from "@/context/WorkoutContext";
+import { WorkoutContextType } from "@/context/WorkoutContextType";
 
 const Navbar = () => {
   const pathname = usePathname();
+
+  const { workoutPlans, savedPlans } = useContext(
+    WorkoutContext,
+  ) as WorkoutContextType;
 
   const links = (
     <>
@@ -70,7 +76,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
             <Image
               src={logo}
               alt={"Fit-Log"}
@@ -79,23 +85,25 @@ const Navbar = () => {
             <h2 className="text-white font-black max-sm:text-[16px] text-[20px] tracking-[0.9px] leading-7 font-oswald">
               FITLOG
             </h2>
-          </div>
+          </Link>
           <ul className="flex items-center gap-2 max-md:hidden font-semibold text-[14px]">
             {links}
           </ul>
-          <div className="flex max-sm:text-sm justify-center max-sm:gap-1 gap-6">
-            <button className="p-1 text-[#D1D5DB] font-medium">
+          <div className="flex max-sm:text-sm items-center justify-center max-sm:gap-1 gap-6">
+            <Link href="/myPlan" className="badge px-3 py-4 sm:p-5 bg-[#0f0b0b] hover:bg-slate-900 text-[#D1D5DB] hover:text-gray-400 font-medium cursor-pointer rounded-3xl">
               Plan{" "}
               <span className="bg-my-brand text-black font-bold max-sm:text-sm text-lg btn btn-ghost btn-circle max-sm:w-6 max-sm:h-6 w-8 h-8 ml-2">
-                0
+                {workoutPlans.length}
               </span>
-            </button>
-            <button className="p-1 text-gray-400 font-medium">
+            
+            </Link>
+
+            <Link href="/myPlan" className="badge px-3 py-4 sm:p-5 bg-[#0f0b0b] hover:bg-slate-900 text-[#D1D5DB] hover:text-gray-400 font-medium cursor-pointer rounded-3xl">
               Saved{" "}
               <span className="bg-black border-[#D1D5DB] text-[#D1D5DB] font-bold max-sm:text-sm text-lg btn btn-ghost btn-circle max-sm:w-6 max-sm:h-6 w-8 h-8 ml-2">
-                0
+                {savedPlans.length}
               </span>
-            </button>
+            </Link>
           </div>
         </nav>
       </div>

@@ -1,7 +1,10 @@
-import { FiPlus, FiBookmark } from "react-icons/fi";
+import { FiArrowLeft } from "react-icons/fi";
 import { IWorkout } from "@/types/workout.type";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
+import PlanButton from "@/components/workoutDetails/PlanButton";
+import SavePlanButton from "@/components/workoutDetails/SavePlanButton";
 
 interface IWorkoutDetailsPage {
   params: Promise<{
@@ -10,7 +13,7 @@ interface IWorkoutDetailsPage {
 }
 
 const getLibraryWorkouts = async () => {
-  const response = await fetch("https://api.abcz.workers.dev/api/fitlog");
+    const response = await fetch("https://api.abcz.workers.dev/api/fitlog");
   const data = await response.json();
   return data;
 };
@@ -23,7 +26,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
   ) as IWorkout;
 
   return (
-    <div className="bg-[#0f0b0b]">
+    <div className="bg-[#0f0b0b] py-15">
       <div className="container mx-auto py-4 md:py-8 flex justify-center">
         <div className="w-full max-w-6xl bg-[#0f0b0b] text-white rounded-3xl p-6 grid grid-cols-1 md:grid-cols-2 gap-8 border border-gray-800">
           <div className="relative h-87.5 md:h-120 lg:h-160 w-full rounded-2xl overflow-hidden bg-neutral">
@@ -32,6 +35,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
               alt={workout.name}
               fill
               priority
+              sizes="(max-width: 768px) 100vw, 600px"
               className="object-cover"
             />
           </div>
@@ -97,18 +101,21 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
                 </ol>
               </div>
             </div>
-            <div className="flex gap-3 pt-6 mt-6">
-              <button className="flex-1 bg-my-brand hover:bg-[#b5e600] text-[#0F1115] font-semibold py-3 px-4 rounded-xl text-xs md:text-sm uppercase tracking-wider transition-colors flex items-center justify-center gap-1">
-                <FiPlus size={16} className="stroke-3" />
-                Add to today&apos;s plan
-              </button>
-              <button className="flex-1 bg-transparent hover:bg-gray-800 text-[#E5E7EB] border border-gray-700 font-medium py-3 px-4 rounded-xl text-xs md:text-sm uppercase tracking-wider transition-colors flex items-center justify-center gap-1">
-                <FiBookmark size={15} />
-                Save for later
-              </button>
+            <div className="flex flex-col sm:flex-row gap-3 pt-6 mt-6">
+              <PlanButton workout={workout} />
+              <SavePlanButton workout={workout} />
             </div>
           </div>
         </div>
+      </div>
+      <div className="w-full max-w-8xl px-2 flex justify-center">
+        <Link
+          href="/"
+          className="btn btn-primary flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-wider text-white hover:text-my-brand transition-colors group py-2"
+        >
+          <FiArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
+          <span>Back to Workouts</span>
+        </Link>
       </div>
     </div>
   );

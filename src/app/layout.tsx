@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
+import WorkoutProvider from "@/context/WorkoutContext";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,12 +31,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" data-theme="dark">
+    <html lang="en" data-theme="dark" data-scroll-behavior="smooth">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} ${inter.className} h-full antialiased min-h-full flex flex-col`}
       >
+        <WorkoutProvider>
         <Navbar />
-        {children}
+          {children}
+          <ToastContainer />
+        </WorkoutProvider>
       </body>
     </html>
   );
