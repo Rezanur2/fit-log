@@ -100,7 +100,7 @@ const Navbar = () => {
 
             <Link href="/my-plan" className="badge px-3 py-4 sm:p-5 bg-[#0f0b0b] hover:bg-slate-900 text-[#D1D5DB] hover:text-gray-400 font-medium cursor-pointer rounded-3xl">
               Saved{" "}
-              <span className="bg-black border-[#D1D5DB] text-[#D1D5DB] font-bold max-sm:text-sm text-lg btn btn-ghost btn-circle max-sm:w-6 max-sm:h-6 w-8 h-8 ml-2">
+              <span className="bg-black border border-[#D1D5DB] text-[#D1D5DB] font-bold max-sm:text-sm text-lg btn btn-ghost btn-circle max-sm:w-6 max-sm:h-6 w-8 h-8 ml-2">
                 {savedPlans.length}
               </span>
             </Link>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const BooksLoading = () => {
+const WorkoutLoading = () => {
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center gap-4">
       <span className="loading loading-spinner loading-lg text-my-brand"></span>
@@ -9,4 +9,4 @@ const BooksLoading = () => {
   );
 };
 
-export default BooksLoading;
+export default WorkoutLoading;
