@@ -31,11 +31,11 @@ const Navbar = () => {
       <li>
         <Link
           className={
-            pathname === "/myPlan"
+            pathname === "/my-plan"
               ? "text-my-brand rounded-4xl p-4 badge"
               : "text-gray-400 p-4"
           }
-          href="/myPlan"
+          href="/my-plan"
         >
           My Plan
         </Link>
@@ -90,7 +90,7 @@ const Navbar = () => {
             {links}
           </ul>
           <div className="flex max-sm:text-sm items-center justify-center max-sm:gap-1 gap-6">
-            <Link href="/myPlan" className="badge px-3 py-4 sm:p-5 bg-[#0f0b0b] hover:bg-slate-900 text-[#D1D5DB] hover:text-gray-400 font-medium cursor-pointer rounded-3xl">
+            <Link href="/my-plan" className="badge px-3 py-4 sm:p-5 bg-[#0f0b0b] hover:bg-slate-900 text-[#D1D5DB] hover:text-gray-400 font-medium cursor-pointer rounded-3xl">
               Plan{" "}
               <span className="bg-my-brand text-black font-bold max-sm:text-sm text-lg btn btn-ghost btn-circle max-sm:w-6 max-sm:h-6 w-8 h-8 ml-2">
                 {workoutPlans.length}
@@ -98,7 +98,7 @@ const Navbar = () => {
             
             </Link>
 
-            <Link href="/myPlan" className="badge px-3 py-4 sm:p-5 bg-[#0f0b0b] hover:bg-slate-900 text-[#D1D5DB] hover:text-gray-400 font-medium cursor-pointer rounded-3xl">
+            <Link href="/my-plan" className="badge px-3 py-4 sm:p-5 bg-[#0f0b0b] hover:bg-slate-900 text-[#D1D5DB] hover:text-gray-400 font-medium cursor-pointer rounded-3xl">
               Saved{" "}
               <span className="bg-black border-[#D1D5DB] text-[#D1D5DB] font-bold max-sm:text-sm text-lg btn btn-ghost btn-circle max-sm:w-6 max-sm:h-6 w-8 h-8 ml-2">
                 {savedPlans.length}

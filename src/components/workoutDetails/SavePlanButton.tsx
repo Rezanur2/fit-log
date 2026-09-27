@@ -1,17 +1,25 @@
 "use client";
-import { WorkoutContext  } from "@/context/WorkoutContext";
+import { WorkoutContext } from "@/context/WorkoutContext";
 import { WorkoutContextType } from "@/context/WorkoutContextType";
 import { IWorkout } from "@/types/workout.type";
 import React, { useContext } from "react";
 import { FiBookmark } from "react-icons/fi";
 import { toast } from "react-toastify";
 
-const SavePlanButton = ({ workout }: { workout: IWorkout}) => {
-  const { savedPlans, setSavedPlans }= useContext(WorkoutContext)as WorkoutContextType;
+const SavePlanButton = ({ workout }: { workout: IWorkout }) => {
+  const { savedPlans, setSavedPlans } = useContext(
+    WorkoutContext,
+  ) as WorkoutContextType;
+
   const handleSavePlan = () => {
-    console.log("Read btn treiggereed", workout);
+    const savedWorkout = savedPlans.find((plan) => plan.id === workout.id);
+    if (savedWorkout) {
+      toast.warning(`"${workout.name}" is already saved`);
+      return;
+    }
+
     setSavedPlans([...savedPlans, workout]);
-    toast.info(`"${workout.name}" saved for letter.`);
+    toast.info(`"${workout.name}" saved for later`);
   };
 
   return (

@@ -28,8 +28,8 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
   return (
     <div className="bg-[#0f0b0b] py-15">
       <div className="container mx-auto py-4 md:py-8 flex justify-center">
-        <div className="w-full max-w-6xl bg-[#0f0b0b] text-white rounded-3xl p-6 grid grid-cols-1 md:grid-cols-2 gap-8 border border-gray-800">
-          <div className="relative h-87.5 md:h-120 lg:h-160 w-full rounded-2xl overflow-hidden bg-neutral">
+        <div className="w-full max-w-6xl bg-[#0f0b0b] text-white rounded-3xl p-6 grid grid-cols-1 lg:grid-cols-2 gap-8 border border-gray-800">
+          <div className="relative h-87.5 md:h-160 lg:h-178.5 w-full rounded-2xl overflow-hidden bg-neutral">
             <Image
               src={workout.image}
               alt={workout.name}
@@ -70,7 +70,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
                 ].map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex justify-between p-3 px-4 border-b border-gray-700 last:border-0"
+                    className="flex justify-between p-2 lg:p-3 px-4 border-b border-gray-700 last:border-0"
                   >
                     <span className="text-gray-500 font-bold text-xs uppercase">
                       {item.key}
@@ -86,22 +86,13 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
                   Instructions
                 </h3>
                 <ol className="list-decimal list-inside space-y-1.5 text-xs md:text-sm text-[#D1D5DB]">
-                  <li>
-                    Lie on the bench with eyes under the bar and feet planted.
-                  </li>
-                  <li>
-                    Unrack with locked elbows and lower the bar to mid-chest.
-                  </li>
-                  <li>
-                    Press up in a slight arc until elbows lock without bouncing.
-                  </li>
-                  <li>
-                    Keep shoulder blades pinched and a natural arch in the back.
-                  </li>
+                  {
+                    workout.instructions.map((step: string, index: number) => (<li key={index}>{step}</li>))
+                  }
                 </ol>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3 pt-6 mt-6">
+            <div className="flex flex-col sm:flex-row gap-3 pt-3 mt-3">
               <PlanButton workout={workout} />
               <SavePlanButton workout={workout} />
             </div>

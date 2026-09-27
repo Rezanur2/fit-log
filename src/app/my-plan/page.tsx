@@ -5,10 +5,32 @@ import { WorkoutContext } from "@/context/WorkoutContext";
 import { WorkoutContextType } from "@/context/WorkoutContextType";
 import { IWorkout } from "@/types/workout.type";
 import React, { useContext, useState } from "react";
+import { toast } from "react-toastify";
 
 const ListedWorkouts = () => {
-  const { workoutPlans, savedPlans } = useContext(WorkoutContext) as WorkoutContextType;
+  const { workoutPlans, setWorkoutPlans, savedPlans, setSavedPlans } = useContext(WorkoutContext) as WorkoutContextType;
 
+  const handleRemovePlan = (id: number) => {
+    const workout = workoutPlans.find((plan) => plan.id === id);
+    const restWorkouts = workoutPlans.filter((selectedPlan) => selectedPlan.id !== id);
+    setWorkoutPlans(restWorkouts);
+    toast.warning(`"${workout?.name}" removed from todays's plan`);
+  };
+
+  const handleRemoveSaved = (id: number) => {
+    const workout = savedPlans.find((plan) => plan.id === id);
+    const restSaved = savedPlans.filter((savedPlan) => savedPlan.id !== id)
+    setSavedPlans(restSaved);
+    toast.warning(`"${workout?.name}" removed from saved`)
+  };
+  const handleComplete = (id: number) => {
+    const workout = workoutPlans.find((plan) => plan.id === id);
+    if (!workout) return;
+    const restWorkouts = workoutPlans.filter((plan) => plan.id !== id);
+    setWorkoutPlans(restWorkouts);
+    toast.success(`"${workout.name}" is successfully completed`);
+  };
+  
   const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
 
   return (
@@ -40,8 +62,8 @@ const ListedWorkouts = () => {
               onClick={() => setActiveTab("plan")}
               className={`px-4 py-2 rounded-lg text-xs font-medium font-oswald tracking-wider transition-all uppercase ${
                 activeTab === "plan"
-                  ? "bg-[#222630] text-white"
-                  : "text-[#8A92A0] hover:text-white"
+                  ? "bg-[#222630] text-my-brand"
+                  : "text-[#8A92A0] hover:text-my-brand"
               }`}
             >
               Today&apos;s Plan
@@ -50,8 +72,8 @@ const ListedWorkouts = () => {
               onClick={() => setActiveTab("saved")}
               className={`px-4 py-2 rounded-lg text-xs font-medium font-oswald tracking-wider transition-all uppercase ${
                 activeTab === "saved"
-                  ? "bg-[#222630] text-white"
-                  : "text-[#8A92A0] hover:text-white"
+                  ? "bg-[#222630] text-my-brand"
+                  : "text-[#8A92A0] hover:text-my-brand"
               }`}
             >
               Saved
@@ -74,7 +96,7 @@ const ListedWorkouts = () => {
             <div className="flex flex-col gap-4">
               {workoutPlans.length > 0 ? (
                 workoutPlans.map((workout: IWorkout) => (
-                  <ListedWorkoutCard key={workout.id} workout={workout} type="plan" />
+                  <ListedWorkoutCard key={workout.id} workout={workout} type="plan" onRemove={handleRemovePlan} onComplete={handleComplete} />
                 ))
               ) : (
                 <div className="flex justify-center text-center py-10">
@@ -87,7 +109,7 @@ const ListedWorkouts = () => {
             <div className="flex flex-col gap-4">
               {savedPlans.length > 0 ? (
                 savedPlans.map((workout: IWorkout) => (
-                  <ListedWorkoutCard key={workout.id} workout={workout} type="saved" />
+                  <ListedWorkoutCard key={workout.id} workout={workout} type="saved" onRemove={handleRemoveSaved} />
                 ))
               ) : (
                 <div className="flex justify-center text-center py-10">

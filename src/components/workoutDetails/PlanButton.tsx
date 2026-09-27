@@ -7,9 +7,21 @@ import { LuCalendarPlus2 } from "react-icons/lu";
 import { toast } from "react-toastify";
 
 const PlanButton = ({ workout }: { workout: IWorkout }) => {
-  const { workoutPlans, setWorkoutPlans } = useContext(WorkoutContext)as WorkoutContextType;
+  const { workoutPlans, setWorkoutPlans } = useContext(WorkoutContext) as WorkoutContextType;
+  
+  const maxSelected = 5;
+  
+
   const handleAddToPlan = () => {
-      console.log("Read btn treiggereed", workout);
+    if (workoutPlans.length >= maxSelected) {
+      toast.warning("You can add a maximum of 5 workouts to today's plan.");
+      return;
+    }
+    const existingWorkout = workoutPlans.find((plan) => plan.id === workout.id);
+    if (existingWorkout) {
+      toast.warning(`"${workout.name}" is already in today's plan`);
+      return;
+    }
       setWorkoutPlans([...workoutPlans, workout])
       toast.success(`"${workout.name}" added to today's plan`)
   };
