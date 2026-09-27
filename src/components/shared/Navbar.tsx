@@ -86,10 +86,10 @@ const Navbar = () => {
               FITLOG
             </h2>
           </Link>
-          <ul className="flex items-center gap-2 max-md:hidden font-semibold text-[14px]">
+          <ul className="flex items-center gap-2 max-md:hidden ml-40 font-semibold text-[14px]">
             {links}
           </ul>
-          <div className="flex max-sm:text-sm items-center justify-center max-sm:gap-1 gap-6">
+          <div className="flex max-sm:text-sm items-center justify-center max-sm:gap-1 gap-3">
             <Link href="/my-plan" className="badge px-3 py-4 sm:p-5 bg-[#0f0b0b] hover:bg-slate-900 text-[#D1D5DB] hover:text-gray-400 font-medium cursor-pointer rounded-3xl">
               Plan{" "}
               <span className="bg-my-brand text-black font-bold max-sm:text-sm text-lg btn btn-ghost btn-circle max-sm:w-6 max-sm:h-6 w-8 h-8 ml-2">

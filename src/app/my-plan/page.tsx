@@ -10,6 +10,23 @@ import { toast } from "react-toastify";
 const ListedWorkouts = () => {
   const { workoutPlans, setWorkoutPlans, savedPlans, setSavedPlans } = useContext(WorkoutContext) as WorkoutContextType;
 
+  const [sortBy, setSortBy] = useState<"duration" | "calories" | "rating">("duration");
+
+  const sortWorkouts = (workouts: IWorkout[]) => {
+    const sortedWorkouts = [...workouts];
+    if (sortBy === "duration") {
+      sortedWorkouts.sort((a, b) => b.duration - a.duration);
+    } else if (sortBy === "calories") {
+      sortedWorkouts.sort((a, b) => b.caloriesBurned - a.caloriesBurned)
+    } else if (sortBy === "rating") {
+      sortedWorkouts.sort((a, b) => b.rating - a.rating);
+    }
+    return sortedWorkouts;
+  }
+
+  const sortedWorkoutPlans = sortWorkouts(workoutPlans);
+  const sortedSavedPlans = sortWorkouts(savedPlans);
+  
   const handleRemovePlan = (id: number) => {
     const workout = workoutPlans.find((plan) => plan.id === id);
     const restWorkouts = workoutPlans.filter((selectedPlan) => selectedPlan.id !== id);
@@ -57,7 +74,7 @@ const ListedWorkouts = () => {
         <div className="grid grid-cols-3 justify-between px-8 py-4 my-6 bg-[#121316] border border-[#222630] rounded-2xl">
           <div className="border-r border-[#20242b] pr-6">
             <h4 className="text-[#8A92A0] text-xs">Exercises</h4>
-            <p className="text-my-brand font-bold text-[36px]">{workoutPlans.length}</p>
+            <p className="text-my-brand font-bold text-[36px]">{currentWorkouts.length}</p>
           </div>
           <div className="border-r border-[#20242b] px-8">
             <h4 className="text-[#8A92A0] text-xs">Minutes</h4>
@@ -95,20 +112,21 @@ const ListedWorkouts = () => {
           <div className="flex items-center gap-3">
             <span className="text-xs text-[#8A92A0] hidden sm:inline">Sort By</span>
             <select
-              defaultValue="duration"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as "duration" | "calories" | "rating")}
               className="select select-sm w-28 rounded-lg border border-[#292E37] bg-[#121316] text-xs text-[#D6D8DC] outline-none"
             >
-              <option value="duration">Duration</option>
-              <option value="calories">Calories</option>
-              <option value="rating">Rating</option>
+              <option value={"duration"}>Duration</option>
+              <option value={"calories"}>Calories</option>
+              <option value={"rating"}>Rating</option>
             </select>
           </div>
         </div>
         <div>
           {activeTab === "plan" && (
             <div className="flex flex-col gap-4">
-              {workoutPlans.length > 0 ? (
-                workoutPlans.map((workout: IWorkout) => (
+              {sortedWorkoutPlans.length > 0 ? (
+                sortedWorkoutPlans.map((workout: IWorkout) => (
                   <ListedWorkoutCard key={workout.id} workout={workout} type="plan" onRemove={handleRemovePlan} onComplete={handleComplete} />
                 ))
               ) : (
@@ -120,8 +138,8 @@ const ListedWorkouts = () => {
           )}
           {activeTab === "saved" && (
             <div className="flex flex-col gap-4">
-              {savedPlans.length > 0 ? (
-                savedPlans.map((workout: IWorkout) => (
+              {sortedSavedPlans.length > 0 ? (
+                sortedSavedPlans.map((workout: IWorkout) => (
                   <ListedWorkoutCard key={workout.id} workout={workout} type="saved" onRemove={handleRemoveSaved} />
                 ))
               ) : (

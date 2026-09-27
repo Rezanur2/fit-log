@@ -20,13 +20,15 @@ const Banner = () => {
               <br className="max-lg:hidden" />
               into today&apos;s plan, and watch the week&apos;s work add up.
             </p>
-            <a
+            <span className="max-md:flex max-md:justify-center">
+              <a
               href="#library"
               className="btn text-xs font-bold bg-my-brand text-black flex items-center justify-center gap-2 w-fit px-4 group"
             >
               <span>BROWSE WORKOUTS</span>
               <BsArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </a>
+            </span>
           </div>
           <div className="flex justify-center md:justify-end w-full max-md:mt-14">
             <Image
