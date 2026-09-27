@@ -5,6 +5,7 @@ import React from "react";
 import Link from "next/link";
 import PlanButton from "@/components/workoutDetails/PlanButton";
 import SavePlanButton from "@/components/workoutDetails/SavePlanButton";
+import { notFound } from "next/navigation";
 
 interface IWorkoutDetailsPage {
   params: Promise<{
@@ -22,8 +23,12 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
   const { workoutId } = await params;
   const workoutsData = await getLibraryWorkouts();
   const workout = workoutsData.find(
-    (workout: IWorkout) => workout.id === parseInt(workoutId),
-  ) as IWorkout;
+  (workout: IWorkout) => workout.id === parseInt(workoutId),
+);
+
+if (!workout) {
+  notFound();
+}
 
   return (
     <div className="bg-[#0f0b0b] py-15">
@@ -45,11 +50,10 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
                 {workout.name}
               </h1>
               <p className="text-sm text-gray-400 mt-2 leading-relaxed">
-                A compound press that builds chest thickness, triceps, and
-                pressing power from a stable bench.
+                {workout.description}
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
-                {workout.muscleGroups?.map((muscle) => (
+                {workout.muscleGroups?.map((muscle:string) => (
                   <span
                     key={muscle}
                     className="bg-my-brand text-[#0F1115] text-xs font-semibold px-3 py-1 rounded-full uppercase"
@@ -99,7 +103,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPage) => {
           </div>
         </div>
       </div>
-      <div className="w-full max-w-8xl px-2 flex justify-center">
+      <div className="w-full max-w-8xl px-2 flex justify-center max-md:pt-4">
         <Link
           href="/"
           className="btn btn-primary flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-wider text-white hover:text-my-brand transition-colors group py-2"

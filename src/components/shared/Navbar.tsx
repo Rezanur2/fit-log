@@ -86,7 +86,7 @@ const Navbar = () => {
               FITLOG
             </h2>
           </Link>
-          <ul className="flex items-center gap-2 max-md:hidden ml-40 font-semibold text-[14px]">
+          <ul className="flex items-center gap-2 max-md:hidden ml-36 font-semibold text-[14px]">
             {links}
           </ul>
           <div className="flex max-sm:text-sm items-center justify-center max-sm:gap-1 gap-3">

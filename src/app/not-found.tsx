@@ -8,10 +8,10 @@ export default function NotFound() {
           <span className="h-2 w-2 rounded-full bg-error" />
           Error 404
         </div>
-        <h1 className="mt-7 text-5xl font-bold tracking-tight text-base-content sm:text-6xl">
+        <h1 className="mt-7 text-4xl font-bold tracking-tight text-base-content sm:text-6xl">
           Page not found
         </h1>
-        <p className="mx-auto mt-5 max-w-md text-base leading-7 text-base-content/60">
+        <p className="mx-auto mt-5 max-w-md text-sm sm:text-base leading-7 text-base-content/60">
           The page you&apos;re looking for doesn&apos;t exist, has been moved,
           or is temporarily unavailable.
         </p>
